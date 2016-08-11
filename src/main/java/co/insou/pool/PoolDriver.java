@@ -2,7 +2,7 @@ package co.insou.pool;
 
 public enum PoolDriver {
 
-    MYSQL("com.mysql.jdbc.Driver"),
+    MYSQL("com.mysql.jdbc.jdbc2.optional.MysqlDataSource"),
     SQLITE_XERIAL("org.sqlite.SQLiteDataSource"),
     POSTGRESQL("org.postgresql.ds.PGSimpleDataSource"),
     APACHE_DERBY("org.apache.derby.jdbc.ClientDataSource"),
