@@ -32,17 +32,21 @@ public class Pool {
     }
 
     public void build() {
-        if (url == null) {
-            throw new IllegalStateException("Please set a URL!");
+        if (url == null && driver == null) {
+            throw new IllegalStateException("Please set a URL / Driver!");
         }
         HikariConfig config = new HikariConfig();
-        config.setDataSourceClassName(driver.getClassName());
-        config.setJdbcUrl(url);
+        if (url != null) {
+            config.setJdbcUrl(url);
+        } else {
+            config.setDataSourceClassName(driver.getClassName());
+        }
         config.setUsername(credentials.getUsername());
         config.setPassword(credentials.getPassword());
         for (HikariProperty property : properties) {
             property.applyTo(config);
         }
+        System.out.println("URL: " + config.getJdbcUrl());
         dataSource = new HikariDataSource(config);
     }
 
